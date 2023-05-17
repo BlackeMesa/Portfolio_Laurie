@@ -24,8 +24,8 @@ import { PreviewItem } from './previewItem';
 	 */
 	constructor(DOM_el, DOM_previewItem) {
 		this.DOM.el = DOM_el;
-        
-        this.previewItem = new PreviewItem(DOM_previewItem);
+         
+        // this.previewItem = new PreviewItem(DOM_previewItem);
         this.DOM.titleWrap = this.DOM.el.querySelector('.cell__title');
         this.DOM.title = this.DOM.titleWrap.querySelector('.oh__inner');
         this.DOM.imagesWrap = this.DOM.el.querySelector('.cell--images');

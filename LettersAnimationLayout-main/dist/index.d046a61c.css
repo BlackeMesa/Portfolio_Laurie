@@ -359,7 +359,7 @@ body {
 
 .js .loading:before, .js .loading:after {
   content: "";
-  z-index: 1000;
+  z-index: 10000;
   position: fixed;
 }
 
@@ -422,7 +422,6 @@ a:focus-visible {
 
 .page {
   text-align: center;
-  z-index: 1000;
   background: var(--color-page);
   padding: 3rem 5vw;
   position: relative;
@@ -695,15 +694,6 @@ a:focus-visible {
 
 .js .panel__item--open {
   z-index: 1000;
-}
-
-.static-quote {
-  writing-mode: vertical-lr;
-  text-orientation: mixed;
-  color: #f9fafe4d;
-  width: 250px;
-  font-size: 80px;
-  transform: rotate(180deg);
 }
 
 @media screen and (width >= 53em) {

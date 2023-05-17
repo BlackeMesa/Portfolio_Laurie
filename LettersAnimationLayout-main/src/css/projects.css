@@ -91,7 +91,7 @@
 	top: 0;
 	left: 0;
 	pointer-events: none;
-	z-index: 2000;
+	z-index: 30;
 	/* background-color: rgba(91, 88, 88, 0.5); */
 }
 
@@ -135,4 +135,13 @@
 	font-family: lores-22-serif, sans-serif;
 	font-weight: 700;
 	font-size: clamp(1.563rem, 6vw, 3.815rem);
+}
+
+.blur-layout{
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    backdrop-filter: blur(15px);
+    z-index: 50
 }

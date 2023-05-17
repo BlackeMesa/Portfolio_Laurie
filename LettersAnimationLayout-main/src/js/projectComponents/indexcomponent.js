@@ -2,28 +2,92 @@ import { preloadImages, preloadFonts } from '../utils';
 import { Row } from './row';
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
+import { PreviewItem } from "./previewItem";
+import { preloadImages } from "../utils";
 
-export function init(){
 
-    gsap.registerPlugin(Flip);
+
+
+import donnees from "../data/data";
+import CategoryItem from "./categoryComponent";
+
+ gsap.registerPlugin(Flip);
+
+ // preview Items
+ const previewItems = [...document.querySelectorAll(".preview > .preview__item")];
+ // initial rows
+ const rows = [...document.querySelectorAll(".row")];
+ // cover element
+ const cover = document.querySelector(".cover");
+ // close ctrl
+ const closeCtrl = document.querySelector(".preview > .preview__close");
+ const body = document.body;
+
+ const containerImg = document.querySelectorAll(".panel__item-img");
+ const mainLayout = document.querySelector(".ici");
+ const panelItem = document.querySelectorAll(".panel__item");
+
+containerImg.forEach((container) => {
+  const containerProject = document.querySelectorAll(".panel__item-title");
+
+  const dataName = container.getAttribute("data-name");
+
+  container.addEventListener("click", () => {
+    containerProject.forEach((project) => {
+      if (dataName === "Marketing") {
+        donnees.Marketing.forEach((item) => {
+          const categoryItem = new CategoryItem(item);
+          const category = categoryItem.getCategoryDOM();
+          project.appendChild(category);
+        });
+      } else if (dataName === "Design") {
+        donnees.Design.forEach((item) => {
+          const categoryItem = new CategoryItem(item);
+          const category = categoryItem.getCategoryDOM();
+          project.appendChild(category);
+        });
+      } else if (dataName === "Communication") {
+        donnees.Communication.forEach((item) => {
+          const categoryItem = new CategoryItem(item);
+          const category = categoryItem.getCategoryDOM();
+          project.appendChild(category);
+        });
+      }
+
+      panelItem.forEach((item) => {
+        const closeBtn = item.querySelector(".panel__item-close");
+
+        closeBtn.addEventListener("click", () => {
+          project.innerHTML = "";
+          mainLayout.innerHTML = "";
+        });
+      });
+    });
+
     
-    // preview Items
-    const previewItems = [...document.querySelectorAll('.preview > .preview__item')];
-    // initial rows
-    const rows = [...document.querySelectorAll('.row')];
-    // cover element
-    const cover = document.querySelector('.cover');
-    // close ctrl
-    const closeCtrl = document.querySelector('.preview > .preview__close');
-    const body = document.body;
+  });
+});
+
+
+
+
+
+
+
+   
    
     // Row instance array
     let rowsArr = [];
     
     rows.forEach((row, position) => {
         
-        rowsArr.push(new Row(row, previewItems[position]));
+        rowsArr.push(new Row(row));
+        
+        
+        
+        
     });
+    console.log(rowsArr);
     
     let isOpen = false;
     let isAnimating = false;
@@ -62,8 +126,8 @@ export function init(){
                 duration: 0.5,
                 ease: 'expo',
                 startAt: {
-                    yPercent: 100, 
-                    rotation: 15
+                    yPercent: 50, 
+                    rotation: 5
                 },
                 yPercent: 0,
                 rotation: 0
@@ -83,18 +147,18 @@ export function init(){
                 opacity: 0,
                 scale: 0.8
             }, 'start')
-            .to(row.DOM.title, {
-                duration: 0.1,
-                ease: 'power1.in',
-                yPercent: -100,
-                onComplete: () => row.DOM.titleWrap.classList.remove('cell__title--switch')
-            }, 'start')
+            // .to(row.DOM.title, {
+            //     duration: 0.1,
+            //     ease: 'power1.in',
+            //     yPercent: -100,
+            //     onComplete: () => row.DOM.titleWrap.classList.remove('cell__title--switch')
+            // }, 'start')
             .to(row.DOM.title, {
                 duration: 0.5,
                 ease: 'expo',
                 startAt: {
-                    yPercent: 100, 
-                    rotation: 15
+                    yPercent: 0, 
+                    rotation: 0
                 },
                 yPercent: 0,
                 rotation: 0
@@ -102,7 +166,14 @@ export function init(){
         });
     
         // Open a row and reveal the grid
-        row.DOM.el.addEventListener('click', () => {
+             row.DOM.el.addEventListener('click', () => {
+           console.log("là");
+             rows.forEach((row, position) => {
+               
+
+               rowsArr[position].previewItem = new PreviewItem(previewItems[position]);
+             });
+             
             if ( isAnimating ) return;
             isAnimating = true;
     
@@ -249,4 +320,4 @@ export function init(){
     Promise.all([preloadImages('.cell__img-inner')]).then(() => {
         document.body.classList.remove('loading')
     });
-}
+

@@ -1,5 +1,5 @@
-
-
+import { Panel } from "../panel";
+import { PreviewItem } from "./previewItem";
 
 export default class CategoryItem {
   constructor(data) {
@@ -8,12 +8,13 @@ export default class CategoryItem {
     this.photos = photos;
 
     this.name = name;
- 
   }
 
   getCategoryDOM() {
+    const panels = [...document.querySelectorAll(".panel")];
     const div = document.createElement("div");
     div.classList.add("project-container", "my-5");
+    const mainLayout = document.querySelector(".ici");
     div.innerHTML = `
     <section >
          <div class="row">
@@ -38,13 +39,22 @@ export default class CategoryItem {
     </section>
     
         `;
-        this.getItemDOM();
-        return div
+       
+    
+       div.addEventListener("click", () => {
+       
+         this.getItemDOM();
+        
+       });
+      
+    
+    return div;
   }
- 
-    getItemDOM() {
+
+  getItemDOM() {
     const div = document.createElement("div");
     const mainLayout = document.querySelector(".ici");
+    // mainLayout.classList.add("blur-layout")
     div.classList.add("project-item", "my-5");
     div.innerHTML = `
     <section class="preview">
@@ -73,13 +83,7 @@ export default class CategoryItem {
 		</section>
     
         `;
-       
+
     return mainLayout.appendChild(div);
   }
 }
-
-
-
-  
-
-  
