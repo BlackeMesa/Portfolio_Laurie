@@ -20,9 +20,9 @@
 	 */
 	constructor(DOM_el) {
 		this.DOM.el = DOM_el;
-		
+		console.log(this.DOM.el);
         this.DOM.title = this.DOM.el.querySelector('.preview__item-title > .oh__inner');
-        this.DOM.grid = this.DOM.el.querySelector('.grid');
+        this.DOM.grid = this.DOM.el.querySelector(".container-cell");
 		this.DOM.images = [...this.DOM.grid.querySelectorAll('.cell__img')];
 	}
 }

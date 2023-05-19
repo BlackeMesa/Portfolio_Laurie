@@ -1,84 +1,93 @@
-// import { preloadImages } from './utils';
-// import { Panel } from './panel';
+import { preloadImages } from './utils';
+import { Panel } from './panel';
 
-// import { init } from './projectComponents/indexcomponent'
+import { init } from './projectComponents/indexcomponent'
 
-// import donnees from './data/data';
-// import CategoryItem from './projectComponents/categoryComponent';
-
-
+import donnees from './data/data';
+import CategoryItem from './projectComponents/categoryComponent';
 
 
 
 
-// const containerImg = document.querySelectorAll(".panel__item-img");
-// const mainLayout = document.querySelector(".ici");
-// const panelItem = document.querySelectorAll(".panel__item")
-// containerImg.forEach((container) => {
-//   const containerProject = document.querySelectorAll(".panel__item-title");
- 
-//   const dataName = container.getAttribute("data-name");
+
+const panels = [...document.querySelectorAll(".panel")];
+;
+const mainLayout = document.querySelector(".ici");
+const panelItem = document.querySelectorAll(".panel__item")
+panelItem.forEach((container) => {
+  const containerProject = container.querySelector(".panel__item-title");
+ const img = container.querySelector(".panel__item-img");
+ const containerImg = container.querySelector(".panel__item-imgwrap");
+  const dataName = container.getAttribute("data-name");
   
-//   container.addEventListener("click", () => {
+  img.addEventListener("click", () => {
+let titleCategory = [];
 
-
-// containerProject.forEach((project)=> {
-
- 
-//   if(dataName === "Marketing"){
-//     donnees.Marketing.forEach((item) => {
-//       const categoryItem = new CategoryItem(item);
-//       const category = categoryItem.getCategoryDOM();
-//       project.appendChild(category);
+containerImg.classList.add("pointer-events-none");
+  if(dataName === "Marketing"){
+    donnees.Marketing.forEach((item) => {
       
-//     });
-//   }
-//   else if (dataName === "Design") {
-//      donnees.Design.forEach((item) => {
-//        const categoryItem = new CategoryItem(item);
-//        const category = categoryItem.getCategoryDOM();
-//        project.appendChild(category);
-//      });
-//    }
-//   else if (dataName === "Communication") {
-//      donnees.Communication.forEach((item) => {
-//        const categoryItem = new CategoryItem(item);
-//        const category = categoryItem.getCategoryDOM();
-//        project.appendChild(category);
-//      });
-//    }
+      const categoryItem = new CategoryItem(item);
+      const category = categoryItem.getCategoryDOM();
+      containerProject.appendChild(category);
+        titleCategory.push(item);
+    });
+    
+  
+  }
+  else if (dataName === "Design") {
+     donnees.Design.forEach((item) => {
+       const categoryItem = new CategoryItem(item);
+       const category = categoryItem.getCategoryDOM();
+       containerProject.appendChild(category);
+       titleCategory.push(item);
+     });
+    
+   }
+  else if (dataName === "Communication") {
+     donnees.Communication.forEach((item) => {
+       const categoryItem = new CategoryItem(item);
+       const category = categoryItem.getCategoryDOM();
+       containerProject.appendChild(category);
+       
+     });
+   }
 
 
-//    panelItem.forEach((item) =>{
+   panelItem.forEach((item) =>{
  
-//      const closeBtn = item.querySelector(".panel__item-close");
+     const closeBtn = item.querySelector(".panel__item-close");
      
-//      closeBtn.addEventListener("click", () => {
-//        project.innerHTML = "";
-//        mainLayout.innerHTML = "";
-//      });
-//    })
+     closeBtn.addEventListener("click", () => {
+       containerProject.innerHTML = "";
+       
+       containerImg.classList.remove("pointer-events-none");
+     });
+   })
+
+    
    
-// })
 
 
+
    
-//    panels.forEach((panel) => new Panel(panel));
-//    init();
+  panels.forEach((panel) => new Panel(panel));
+  init(titleCategory);
+   
     
 
     
      
-//   });
-// });
+  });
+});
 
-// // Preload all images
-// preloadImages().then(() => {
-//     // remove loader (loading class) 
-//     document.body.classList.remove('loading');
-//     panels.forEach(panel => new Panel(panel));
+// Preload all images
+preloadImages().then(() => {
+    // remove loader (loading class) 
+    document.body.classList.remove('loading');
+    panels.forEach(panel => new Panel(panel));
 
     
-// });
+});
 
 

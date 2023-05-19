@@ -1,4 +1,4 @@
-import { image6, image7, image8, image9 } from "../../img";
+import { image4, image5, image6, image7, image8, image9 } from "../../img";
 
 
 
@@ -11,12 +11,13 @@ const donnees = {
     },
     {
       name: "Holiq",
-      photos: [image6, image7, image8, image9],
+      photos: [image5, image7, image8, image9],
     },
     {
       name: "BLYAT",
-      photos: [image6, image7, image8, image9],
+      photos: [image4, image7, image8, image9],
     },
+    
   ],
   Design: [
     {

@@ -266,63 +266,75 @@ img, video {
   }
 }
 
+.pointer-events-none {
+  pointer-events: none !important;
+}
+
 .relative {
-  position: relative;
+  position: relative !important;
 }
 
 .z-10 {
-  z-index: 10;
+  z-index: 10 !important;
 }
 
 .m-8 {
-  margin: 2rem;
+  margin: 2rem !important;
 }
 
 .my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
 }
 
 .flex {
-  display: flex;
+  display: flex !important;
 }
 
 .grid {
-  display: grid;
+  display: grid !important;
 }
 
 .w-full {
-  width: 100%;
+  width: 100% !important;
 }
 
 .resize {
-  resize: both;
+  resize: both !important;
+}
+
+.grid-flow-row {
+  grid-auto-flow: row !important;
+}
+
+.auto-rows-max {
+  grid-auto-rows: max-content !important;
 }
 
 .items-center {
-  align-items: center;
+  align-items: center !important;
 }
 
 .justify-center {
-  justify-content: center;
+  justify-content: center !important;
 }
 
 .justify-between {
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 
 .border {
-  border-width: 1px;
+  border-width: 1px !important;
 }
 
 .filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important;
 }
 
 .transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter, backdrop-filter;
-  transition-duration: .15s;
-  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter, backdrop-filter !important;
+  transition-duration: .15s !important;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1) !important;
 }
 
 *, :after, :before {

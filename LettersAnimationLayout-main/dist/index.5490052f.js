@@ -557,16 +557,13 @@ function hmrAccept(bundle, id) {
 }
 
 },{}],"d8YYE":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _utils = require("../utils");
 var _row = require("./row");
 var _gsap = require("gsap");
 var _flip = require("gsap/Flip");
 var _previewItem = require("./previewItem");
-var _data = require("../data/data");
-var _dataDefault = parcelHelpers.interopDefault(_data);
-var _categoryComponent = require("./categoryComponent");
-var _categoryComponentDefault = parcelHelpers.interopDefault(_categoryComponent);
+// import donnees from "../data/data";
+// import CategoryItem from "./categoryComponent";
 (0, _gsap.gsap).registerPlugin((0, _flip.Flip));
 // preview Items
 const previewItems = [
@@ -581,45 +578,11 @@ const cover = document.querySelector(".cover");
 // close ctrl
 const closeCtrl = document.querySelector(".preview > .preview__close");
 const body = document.body;
-const containerImg = document.querySelectorAll(".panel__item-img");
-const mainLayout = document.querySelector(".ici");
-const panelItem = document.querySelectorAll(".panel__item");
-containerImg.forEach((container)=>{
-    const containerProject = document.querySelectorAll(".panel__item-title");
-    const dataName = container.getAttribute("data-name");
-    container.addEventListener("click", ()=>{
-        containerProject.forEach((project)=>{
-            if (dataName === "Marketing") (0, _dataDefault.default).Marketing.forEach((item)=>{
-                const categoryItem = new (0, _categoryComponentDefault.default)(item);
-                const category = categoryItem.getCategoryDOM();
-                project.appendChild(category);
-            });
-            else if (dataName === "Design") (0, _dataDefault.default).Design.forEach((item)=>{
-                const categoryItem = new (0, _categoryComponentDefault.default)(item);
-                const category = categoryItem.getCategoryDOM();
-                project.appendChild(category);
-            });
-            else if (dataName === "Communication") (0, _dataDefault.default).Communication.forEach((item)=>{
-                const categoryItem = new (0, _categoryComponentDefault.default)(item);
-                const category = categoryItem.getCategoryDOM();
-                project.appendChild(category);
-            });
-            panelItem.forEach((item)=>{
-                const closeBtn = item.querySelector(".panel__item-close");
-                closeBtn.addEventListener("click", ()=>{
-                    project.innerHTML = "";
-                    mainLayout.innerHTML = "";
-                });
-            });
-        });
-    });
-});
 // Row instance array
 let rowsArr = [];
 rows.forEach((row, position)=>{
     rowsArr.push(new (0, _row.Row)(row));
 });
-console.log(rowsArr);
 let isOpen = false;
 let isAnimating = false;
 let currentRow = -1;
@@ -830,74 +793,7 @@ Promise.all([
     document.body.classList.remove("loading");
 });
 
-},{"./row":"3HjGf","gsap":"fPSuC","gsap/Flip":"iKp6p","../utils":"72Dku","./previewItem":"9c6LR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../data/data":"aYHQW","./categoryComponent":"8CZ7h"}],"3HjGf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Class representing a Row (.row)
- */ parcelHelpers.export(exports, "Row", ()=>Row);
-var _previewItem = require("./previewItem");
-class Row {
-    // DOM elements
-    DOM = {
-        // main element (.row)
-        el: null,
-        // title (.cell__title > .oh__inner)
-        title: null,
-        // title wrap
-        titleWrap: null,
-        // images wrap
-        imagesWrap: null,
-        // images (.cell__img)
-        images: null
-    };
-    /**
-	 * Constructor.
-	 * @param {Element} DOM_el - main element (.row)
-	 */ constructor(DOM_el, DOM_previewItem){
-        this.DOM.el = DOM_el;
-        // this.previewItem = new PreviewItem(DOM_previewItem);
-        this.DOM.titleWrap = this.DOM.el.querySelector(".cell__title");
-        this.DOM.title = this.DOM.titleWrap.querySelector(".oh__inner");
-        this.DOM.imagesWrap = this.DOM.el.querySelector(".cell--images");
-        this.DOM.images = [
-            ...this.DOM.imagesWrap.querySelectorAll(".cell__img")
-        ];
-    }
-}
-
-},{"./previewItem":"9c6LR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9c6LR":[function(require,module,exports) {
-/**
- * Class representing a Preview Item (.preview__item)
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "PreviewItem", ()=>PreviewItem);
-class PreviewItem {
-    // DOM elements
-    DOM = {
-        // main element (.preview__item)
-        el: null,
-        // title (.preview__item-title)
-        title: null,
-        // grid (.grid)
-        grid: null,
-        // images (.cell__img)
-        images: null
-    };
-    /**
-	 * Constructor.
-	 * @param {Element} DOM_el - main element (.preview__item)
-	 */ constructor(DOM_el){
-        this.DOM.el = DOM_el;
-        this.DOM.title = this.DOM.el.querySelector(".preview__item-title > .oh__inner");
-        this.DOM.grid = this.DOM.el.querySelector(".grid");
-        this.DOM.images = [
-            ...this.DOM.grid.querySelectorAll(".cell__img")
-        ];
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"72Dku":[function(require,module,exports) {
+},{"../utils":"72Dku","./row":"3HjGf","gsap":"fPSuC","gsap/Flip":"iKp6p","./previewItem":"9c6LR","../data/data":"aYHQW","./categoryComponent":"8CZ7h","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"72Dku":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "preloadImages", ()=>preloadImages);
@@ -914,7 +810,7 @@ var _imagesloadedDefault = parcelHelpers.interopDefault(_imagesloaded);
     });
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","imagesloaded":"aYzyZ"}],"aYzyZ":[function(require,module,exports) {
+},{"imagesloaded":"aYzyZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aYzyZ":[function(require,module,exports) {
 /*!
  * imagesLoaded v4.1.4
  * JavaScript is all like "You images are done yet or what?"
@@ -1275,7 +1171,74 @@ function factory(window1, EvEmitter) {
     return EvEmitter;
 });
 
-},{}],"aYHQW":[function(require,module,exports) {
+},{}],"3HjGf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Class representing a Row (.row)
+ */ parcelHelpers.export(exports, "Row", ()=>Row);
+var _previewItem = require("./previewItem");
+class Row {
+    // DOM elements
+    DOM = {
+        // main element (.row)
+        el: null,
+        // title (.cell__title > .oh__inner)
+        title: null,
+        // title wrap
+        titleWrap: null,
+        // images wrap
+        imagesWrap: null,
+        // images (.cell__img)
+        images: null
+    };
+    /**
+	 * Constructor.
+	 * @param {Element} DOM_el - main element (.row)
+	 */ constructor(DOM_el, DOM_previewItem){
+        this.DOM.el = DOM_el;
+        // this.previewItem = new PreviewItem(DOM_previewItem);
+        this.DOM.titleWrap = this.DOM.el.querySelector(".cell__title");
+        this.DOM.title = this.DOM.titleWrap.querySelector(".oh__inner");
+        this.DOM.imagesWrap = this.DOM.el.querySelector(".cell--images");
+        this.DOM.images = [
+            ...this.DOM.imagesWrap.querySelectorAll(".cell__img")
+        ];
+    }
+}
+
+},{"./previewItem":"9c6LR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9c6LR":[function(require,module,exports) {
+/**
+ * Class representing a Preview Item (.preview__item)
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "PreviewItem", ()=>PreviewItem);
+class PreviewItem {
+    // DOM elements
+    DOM = {
+        // main element (.preview__item)
+        el: null,
+        // title (.preview__item-title)
+        title: null,
+        // grid (.grid)
+        grid: null,
+        // images (.cell__img)
+        images: null
+    };
+    /**
+	 * Constructor.
+	 * @param {Element} DOM_el - main element (.preview__item)
+	 */ constructor(DOM_el){
+        this.DOM.el = DOM_el;
+        this.DOM.title = this.DOM.el.querySelector(".preview__item-title > .oh__inner");
+        this.DOM.grid = this.DOM.el.querySelector(".grid");
+        this.DOM.images = [
+            ...this.DOM.grid.querySelectorAll(".cell__img")
+        ];
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aYHQW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _img = require("../../img");
@@ -1369,7 +1332,7 @@ const donnees = {
 };
 exports.default = donnees;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../img":"WeKuV"}],"WeKuV":[function(require,module,exports) {
+},{"../../img":"WeKuV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"WeKuV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "image6", ()=>(0, _6AvifDefault.default));
@@ -1515,7 +1478,7 @@ class CategoryItem {
 }
 exports.default = CategoryItem;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../panel":"cKLyM","./previewItem":"9c6LR"}],"cKLyM":[function(require,module,exports) {
+},{"../panel":"cKLyM","./previewItem":"9c6LR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cKLyM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Panel", ()=>Panel);
